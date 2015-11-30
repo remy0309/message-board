@@ -6,17 +6,24 @@
   <div class="panel-body">
     <% @messages.each do |message| %>
       <span class="label label-info"><%= message.name %></span>
-      <%= message.body %>
+      <span class="form-control" rows="2"><%= message.body %></span>
       <br>
     <% end %>
   </div>
 </div>
 
-<%= form_for(Message.new) do |f| %>
-  名前:
-  <%= f.text_field :name %>
-
-  内容:
-  <%= f.text_field :body %>
-  <%= f.submit class: "btn btn-sm btn-primary" %>
+<%= form_for(Message.new, class: "form-horizontal") do |f| %>
+  <div class="form-graup">
+    <label for="" class="col-sm-1 control-label">名前:</label>
+    <div class="col-sm-11">
+      <%= f.text_field :name, :size => "20x10", class: "form-control"%>
+    </div>
+  </div>
+  
+  <div class="form-group">
+   <label for="" class="col-sm-1 control-label">内容:</label>
+    <div class="col-sm-11">
+     <%= f.text_area :body, class: "form-control" %>
+     <%= f.submit class: "btn btn-sm btn-primary" %>
+    </div>
 <% end %>
